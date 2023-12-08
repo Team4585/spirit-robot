@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.huskylib.src.HuskyRobot;
+import frc.robot.Limelight;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -25,6 +26,8 @@ public class Robot extends HuskyRobot {
 
   private SpiritRobotChassis m_TheChassis = new SpiritRobotChassis();
 
+  private Limelight m_Limelight = new Limelight();
+
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -41,6 +44,7 @@ public class Robot extends HuskyRobot {
     m_TeleopDecider.setChassis(m_TheChassis);
     m_AutoDecider.setChassis(m_TheChassis);
 
+    m_Limelight.Initialize();
   }
 
   /**

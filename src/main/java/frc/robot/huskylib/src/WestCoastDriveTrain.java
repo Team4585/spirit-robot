@@ -11,18 +11,18 @@ public class WestCoastDriveTrain extends RoboDevice{
   private double m_currentSpeed = 0.0;
   private double m_currentRotationSpeed = 0.0;
 
-  private TalonSRX m_leftMasterController;
+  private VictorSPX m_leftMasterController;
   private VictorSPX m_leftSlaveController;
-  private TalonSRX m_rightMasterController;
+  private VictorSPX m_rightMasterController;
   private VictorSPX m_rightSlaveController;
 
 
   public WestCoastDriveTrain(int leftMasterID, int leftSlaveID, int rightMasterID, int rightSlaveID){
     super("WestCoastDriveTrain");
 
-    m_leftMasterController = new TalonSRX(leftMasterID);
+    m_leftMasterController = new VictorSPX(leftMasterID);
     m_leftSlaveController = new VictorSPX(leftSlaveID);
-    m_rightMasterController = new TalonSRX(rightMasterID);
+    m_rightMasterController = new VictorSPX(rightMasterID);
     m_rightSlaveController = new VictorSPX(rightSlaveID);
 
     m_leftSlaveController.follow(m_leftMasterController);
@@ -65,8 +65,8 @@ public class WestCoastDriveTrain extends RoboDevice{
   public void doActions() {
     super.doActions();
 
-    m_leftMasterController.set(ControlMode.PercentOutput, m_targSpeed - m_targRotationSpeed);
-    m_rightMasterController.set(ControlMode.PercentOutput, m_targRotationSpeed - m_targSpeed);
+    m_leftMasterController.set(ControlMode.PercentOutput, (m_targSpeed) + (m_targRotationSpeed));
+    m_rightMasterController.set(ControlMode.PercentOutput,  (m_targRotationSpeed) - (m_targSpeed));
 
     // if(m_currentSpeed < m_targSpeed){
     //   m_currentSpeed += 0.01;
