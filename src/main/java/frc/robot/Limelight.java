@@ -10,8 +10,10 @@ public class Limelight extends RoboDevice{
 
   private NetworkTable networkTable;
   private boolean limelightIsConnected = false;
+
   public Limelight(){
     super("Limelight Sub System");
+    networkTable = NetworkTableInstance.getDefault().getTable("limelight");
   }
 
   public void Initialize(){
@@ -60,13 +62,10 @@ public class Limelight extends RoboDevice{
 
   //tx horizontal offset from crosshair to target (-27 to 27 degrees)
   public double getDegHorizontalFromTarget() {
-    if (networkTable != null){
-      System.out.println("Horizontal: Not null!");
-    } else {
-      System.out.println("Horizontal: Table is null!");
-    }
     NetworkTableEntry tx = networkTable.getEntry("tx");
+
     double x = tx.getDouble(0.0);
+    
     return x;
   }
 
